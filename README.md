@@ -1,3 +1,3 @@
 # counter_bloc_app
 
-this app is created using bloc allow to increment and decrement and makes changes using BLoC State Management
+This app is created using bloc allow to increment and decrement and makes changes using BLoC State Management
