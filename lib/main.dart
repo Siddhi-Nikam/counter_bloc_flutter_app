@@ -53,18 +53,29 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             BlocBuilder<CounterCubit, CounterState>(
               builder: (context, state) {
-                return Text(
-                  state.counterValue.toString(),
-                  style: Theme.of(context).textTheme.headlineMedium,
-                );
+                if (state.counterValue < 0) {
+                  return Text('negative value   ${state.counterValue}',
+                      style: Theme.of(context).textTheme.headlineMedium);
+                } else if (state.counterValue == 0) {
+                  return Text('Value is zero   ${state.counterValue}',
+                      style: Theme.of(context).textTheme.headlineMedium);
+                } else {
+                  return Text(
+                    state.counterValue.toString(),
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                }
               },
+            ),
+            SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton(
                   onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).increament();
+                    BlocProvider.of<CounterCubit>(context).increment();
                   },
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),
@@ -74,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FloatingActionButton(
                   onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).decreament();
+                    BlocProvider.of<CounterCubit>(context).decrement();
                   },
                   tooltip: 'Decrement',
                   child: const Icon(Icons.remove),
